@@ -1,0 +1,33 @@
+<!--partial-scan.tpml-->
+<div id="mainbody" layout="column" layout-fill layout-align="center center">
+<div layout="row" layout-wrap layout-align="center"><h4>Change Your Department</h4></div>
+    <div layout="row" layout-wrap layout-align="center">
+    <md-button flex="20" ng-repeat="items in vm.settings.departments | filter:vm.filterFn" ng-class="{'md-primary':vm.settings.current_department===items.stage}" class="md-raised"
+               style="margin:10px"
+               ng-click="vm.saveDepartment(items.stage)">
+        <h3>{{items.stage}}</h3>
+    </md-button>
+    </div>
+
+</div>
+
+<div layout="row" layout-align="center" style="margin-top:50px">
+    <div flex class="report-total home-stat" style="background-color: black;">
+        <div class="small">In Department</div>
+        {{vm.reportData.length}}
+    </div>
+    <div flex class="report-total home-stat label-success">
+        <div class="small">In Department On time</div>
+        {{vm.on_time}}
+    </div>
+    <div flex class="report-total home-stat label-danger">
+        <div class="small">In Department +4 Days</div>
+        {{vm.department_late}}</div>
+    <div flex class="report-total home-stat label-warning">
+        <div class="small">In Department +3 Days</div>
+        {{vm.department_warning}}</div>
+    <div flex class="report-total home-stat label-danger"><div class="small">In Department - Late</div>
+        {{vm.late}}</div>
+    <div flex class="report-total home-stat label-warning"><div class="small">In Department - Nearly Late</div>
+        {{vm.warning}}</div>
+</div>
