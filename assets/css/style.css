@@ -467,3 +467,12 @@ a.label:focus {
 .label-danger[href]:focus {
     background-color: #c9302c;
 }
+
+.ordersummary .content{
+    font-size: 1.8em;
+}
+
+.ordersummary .summarylabel{
+    font-weight: bold;
+    width:180px;
+}

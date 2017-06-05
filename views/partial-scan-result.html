@@ -14,15 +14,47 @@
 </section>
 <div layout="row" layout-wrap layout-padding id="mainbody" ng-hide="vm.errMsg || vm.displayIndicator" style="height:630px">
     <div flex="50">
+        <table cellpadding="7" cellspacing="0" width="95%" class="ordersummary">
+            <tr>
+                <td class="summarylabel">Order ID</td>
+                <td class="content">{{vm.current_order.orderid}}</td>
+            </tr>
+               <tr>
+                <td class="summarylabel">Order Type</td>
+                <td class="content">{{vm.current_order.ordertype}}</td>
+            </tr>
+              <tr>
+                <td class="summarylabel">Order Source</td>
+                <td class="content">{{vm.current_order.source}}</td>
+            </tr>
+             <tr>
+                <td class="summarylabel">Orthotist</td>
+                <td class="content">{{vm.current_order.orthotist}}</td>
+            </tr>
+               <tr>
+                <td class="summarylabel">Customer</td>
+                <td class="content">{{vm.current_order.customer}}</td>
+            </tr>
+            <tr>
+                <td class="summarylabel">Patient</td>
+                <td class="content">{{vm.current_order.patient}}</td>
+            </tr>
 
-            <md-content flex>
+            <tr>
+                <td class="summarylabel">SAP Number</td>
+                <td class="content">{{vm.current_order.sap}}</td>
+            </tr>
+
+        </table>
+
+         <!--   <md-content flex>
 
 
                 <md-list>
-                    <md-list-item class="md-2-line">
+                    <md-list-item  class="secondary-button-padding">
                         <div class="md-list-item-text">
-                            <h2>{{vm.current_order.orderid}}</h2>
-                            <h3>Order ID</h3>
+                            <p>Order ID</p>
+                            <h3 class="md-secondary"></h3>
                          </div>
                         <md-divider></md-divider>
                     </md-list-item>
@@ -52,8 +84,21 @@
                             <h2>{{vm.current_order.customer}}</h2>
                             <h3>Customer</h3>
                         </div>
-
                     </md-list-item>
+                    <md-list-item class="md-2-line">
+                        <div class="md-list-item-text">
+                            <h2>{{vm.current_order.patient}}</h2>
+                            <h3>Patient</h3>
+                        </div>
+                    </md-list-item>
+                    <md-list-item class="md-2-line">
+                        <div class="md-list-item-text">
+                            <h2>{{vm.current_order.sap}}</h2>
+                            <h3>SAP Number</h3>
+                        </div>
+                    </md-list-item>
+
+
                     <md-divider ng-show="vm.current_order.sketch"></md-divider>
                     <md-list-item class="md-2-line" ng-show="vm.current_order.sketch">
                         <div class="md-list-item-text">
@@ -64,7 +109,7 @@
                     </md-list-item>
 
                 </md-list>
-            </md-content>
+            </md-content>-->
 
 
     </div>
@@ -140,17 +185,17 @@
 
 
     <div  flex style="text-align: center" >
-        <md-button ng-show="vm.hasButton('finaldispatch')" ng-click="vm.sendCommand('out','finaldispatch')"
+        <md-button ng-show="vm.hasButton('finaldespatch')" ng-click="vm.sendCommand('out','finaldespatch')"
                    class="md-raised partial-width blue-button">
             <h3>Final Despatch</h3>
         </md-button>
 
-        <md-button ng-show="vm.hasButton('roughfittingdispatch')" ng-click="vm.sendCommand('out','roughfittingdispatch')"
+        <md-button ng-show="vm.hasButton('roughfittingdespatch')" ng-click="vm.sendCommand('out','roughfittingdespatch')"
                    class="md-raised partial-width blue-button">
             <h3>Rough Fitting Despatch</h3>
         </md-button>
 
-        <md-button ng-show="vm.hasButton('outreject')" ng-click="vm.sendCommand('out','dispatch')"
+        <md-button ng-show="vm.hasButton('outreject')" ng-click="vm.sendCommand('out','despatch')"
                    class="md-raised md-success partial-width blue-button" >
             <h3>Send To Despatch</h3>
         </md-button>

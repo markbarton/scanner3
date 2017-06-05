@@ -14,25 +14,26 @@
             $state.go(s);
         };
 
-        vm.department_late=0;
-        vm.department_warning=0;
-        vm.late=0;
-        vm.warning=0;
+
         
         if(reportData.data){
             if(reportData.data.data){
+                vm.department_late=0;
+                vm.department_warning=0;
+                vm.late=0;
+                vm.warning=0;
                 vm.reportData=reportData.data.data.Orders;
                 for(var i=0;i<vm.reportData.length;i++){
                     if(vm.reportData[i].daysAfterScan>4){
                         vm.department_late+=1;
                     }
-                    if(vm.reportData[i].daysAfterScan>2){
+                    if(vm.reportData[i].daysAfterScan>2 && vm.reportData[i].daysAfterScan<5){
                         vm.department_warning+=1;
                     }
                     if(vm.reportData[i].daysBeforeManufacture<1){
                         vm.late+=1;
                     }
-                    if(vm.reportData[i].daysBeforeManufacture<4){
+                    if(vm.reportData[i].daysBeforeManufacture<4 && vm.reportData[i].daysBeforeManufacture>0){
                         vm.warning+=1;
                     }
                 }

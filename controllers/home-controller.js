@@ -87,14 +87,16 @@
         };
 
          function getStats(){
+             vm.department_late=0;
+             vm.department_warning=0;
+             vm.late=0;
+             vm.warning=0;
+             vm.on_time=0;
+             vm.reportData='';
             orderconfig.sendCommand('','report').then(function (_data) {
                 if(_data.data){
                         vm.reportData=_data.data.Orders;
-                    vm.department_late=0;
-                    vm.department_warning=0;
-                    vm.late=0;
-                    vm.warning=0;
-                    vm.on_time=0;
+
                     for(var i=0;i<vm.reportData.length;i++){
                         if(vm.reportData[i].daysAfterScan>4){
                             vm.department_late+=1;

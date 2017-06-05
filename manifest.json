@@ -1,7 +1,7 @@
 {
   "name": "Trulife Scanner v2",
   "description": "Production Tracking System v2",
-  "version": "3.1",
+  "version": "3.7",
   "manifest_version": 2,
   "app": {
     "background": {
