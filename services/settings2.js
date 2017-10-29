@@ -10,6 +10,9 @@ angular.module('scanner').service('settings', function($q){
     settings.log_enabled=true;
     settings.departments=[];
     settings.network_status=false; //Indicates if we have a good network connection - will be false initially
+    settings.toms_enabled = false; // Are we using the TOMS server
+    settings.tomsserverendpoint = ''; // Are we using the TOMS server
+    settings.security_check = false; // Are we expecting a user scan first?
 
     settings.factories=['Birmingham','Sheffield','Redruth']
     //Get Settings from local storage
@@ -27,6 +30,15 @@ angular.module('scanner').service('settings', function($q){
                 }
                   if(data[key].password){
                     self.password = data[key].password;
+                }
+                  if(data[key].toms_enabled){
+                    self.toms_enabled = data[key].toms_enabled;
+                }
+                if(data[key].tomsserverendpoint){
+                    self.tomsserverendpoint = data[key].tomsserverendpoint;
+                }
+                if(data[key].security_check){
+                    self.security_check = data[key].security_check;
                 }
 
                 if(data[key].current_department){
@@ -65,10 +77,11 @@ angular.module('scanner').service('settings', function($q){
         obj.departments=this.departments;
         obj.current_department=this.current_department;
         obj.factory=this.factory;
+        obj.toms_enabled = this.toms_enabled;
+        obj.security_check = this.security_check;
+        obj.tomsserverendpoint =  this.tomsserverendpoint
         chrome.storage.local.set({'scanner_settings': obj},function(){
-
             deferred.resolve();
-
         });
         return deferred.promise;
     }

@@ -39,6 +39,11 @@
                 </div>
             </md-input-container>
 
+            <md-input-container class="md-block" ng-show="vm.settings.toms_enabled">
+                <label>TOMS Server Address</label>
+                <input type="text" ng-model="vm.settings.tomsserverendpoint"    >
+            </md-input-container>
+
             <md-input-container class="md-block" ng-show="vm.settings.serverendpoint && vm.settings.username && vm.settings.password">
                 <label>Factory - select to set current factory</label>
                 <md-select ng-model="vm.settings.factory">
@@ -47,14 +52,25 @@
                 </md-select>
 
             </md-input-container>
-<md-input-container class="md-block" ng-show="vm.settings.departments.length>0">
+                <md-input-container class="md-block" ng-show="vm.settings.departments.length>0">
                 <label>Departments - select to set current department</label>
                 <md-select ng-model="vm.settings.current_department">
                     <md-option ng-repeat="item in vm.settings.departments| filter:vm.filterFn" value="{{item.stage}}">{{item.stage}}
                     </md-option>
                 </md-select>
+            </md-input-container>
 
             </md-input-container>
+                <md-input-container class="md-block" >
+                    <md-switch ng-model="vm.settings.toms_enabled" aria-label="TOMS Enabled">
+                        TOMS Enabled
+                    </md-switch>
+                    <md-switch ng-model="vm.settings.security_check"
+                               aria-label="Security Check Enabled">
+                        Security Check Enabled
+                    </md-switch>
+
+             </md-input-container>
 
             <div layout="column" layout-align="center center">
                 <div layout="row">

@@ -7,6 +7,37 @@ app.service('orderconfig', ['$http', 'GENERAL_CONFIG', 'settings','log', functio
 
     var stages={}; //The stages
 
+    this.user_check=function(userid){
+      var url='http://' + settings.serverendpoint + GENERAL_CONFIG.API_URL
+      log.logMsg('EXTERNAL >> User Check- '+userid+' >> ' + url );
+
+      var username="";
+      var password="";
+      var station="";
+      var version=settings.version;
+      var factory=settings.factory;
+
+      username=settings.username;
+      password=settings.password;
+
+      if(settings.current_department){
+        station=settings.current_department;
+      }
+      return $http({
+        method: 'POST',
+        data: {
+          'orderid': userid,
+          'command': 'user',
+          'version':version
+        },
+        headers: {
+          'Authorization': 'Basic ' + window.btoa(username+':'+password)},
+        url: url,
+        timeout:15000
+      })
+
+    }
+
     //Command to send to service
     //This will cover check, in, out, outreject
     this.sendCommand=function(orderid,command,nextstage){

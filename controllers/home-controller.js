@@ -9,6 +9,7 @@
     var homeController = function(settings,log,$state,$scope,$rootScope,current_order,orderconfig) {
 
         var vm = this;
+        vm.identified = ''; // new security check
 
         vm.chars = [];
         var pressed = false;
@@ -23,10 +24,21 @@
                     // of characters
                     setTimeout(function(){
                         // check we have a long length e.g. it is a barcode
-                        console.log(vm.chars)
+                        console.log('here',vm.chars)
                         if (vm.chars.length >= 6) {
+                          var barcode = vm.chars.join("");
+
+                          // Do we have security enabled and do we have a valid user?
+                          if(vm.settings.security_check === true && vm.identified === ''){
+                              console.log('need user identity');
+                            orderconfig.user_check(barcode).then(function(_data){
+                                console.log(_data);
+                            })
+                              return;
+
+                          }
+
                             // join the chars array to make a string of the barcode scanned
-                            var barcode = vm.chars.join("");
                             // debug barcode to console (e.g. for use in Firebug)
                             console.log("Barcode Scanned: " + barcode);
                             current_order.orderid=barcode;
@@ -49,6 +61,7 @@
             //Settings Service now populated
                console.log('Have local settings')
                 getStats();
+               console.log(_data);
             },
 
             function(err){
